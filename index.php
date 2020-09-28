@@ -7,27 +7,30 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
 
     <title>Com a casa enlloc!</title>
   </head>
   <body>
-    <h1>Com a casa enlloc!</h1>
+    <h1 class="text-center" >Com a casa enlloc!</h1>
+
 
     <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-8">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md">Enllaç 1</div>
-                        <div class="col-md">Enllaç 2</div>
-                        <div class="col-md">Enllaç 3</div>
-                        <div class="col-md">Enllaç 4</div>
-                        <div class="col-md">Enllaç 5</div>
-                        <div class="col-md">Enllaç 6</div>
+                    <div class="row row-cols-3">
+                        <div class="col"><div class="m-3 p-2 bg-dark text-white">Enllaç 1</div></div>
+                        <div class="col"><div class="m-3 p-2 bg-dark text-white">Enllaç 2</div></div>
+                        <div class="col"><div class="m-3 p-2 bg-dark text-white">Enllaç 3</div></div>
+                        <div class="col"><div class="m-3 p-2 bg-dark text-white">Enllaç 4</div></div>
+                        <div class="col"><div class="m-3 p-2 bg-dark text-white">Enllaç 5</div></div>
+                        <div class="col"><div class="m-3 p-2 bg-dark text-white">Enllaç 6</div></div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-sm">CALENDARI</div>
+            <div class="col-4">CALENDARI</div>
         </div>
     </div>
 
