@@ -17,18 +17,11 @@
     <div class="container">
         <div class="row">
             <?php
+            include 'config.php';
 
-            $enllac = "http://localhost/ComACasaEnlloc/index.php?fons=";
-
-            $links = array(
-                1=> '1',
-                2=> '2',
-                3=> '3',
-                4=> '4',
-                );
             for($i = 1;$i<=sizeof($links);$i++)
             {
-                echo('<div class="col-7"><a href="'.$enllac.$links[$i].'"><div class="m-3 p-2 bg-dark text-white">Enllaç '.$i.' </div></a></div>'); 
+                echo('<div class="col-7"><a href="'.$links[$i].'"><div class="m-3 p-2 bg-dark text-white">Enllaç '.$i.' </div></a></div>'); 
             }                    
             ?>
             </div>
