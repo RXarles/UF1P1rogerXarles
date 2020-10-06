@@ -42,7 +42,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">CALENDARI</div>
+            <div class="col-4">
+              <?php
+                include 'funcions.php';
+                echo(creaCalendari(date('n'),array(4,5,6,7)));
+              ?>
+            </div>
         </div>
     </div>
 
