@@ -34,9 +34,9 @@
 
                       $numEnllacos = sizeof($links);
 
-                      for($i = 1;$i<=$numEnllacos;$i++)
+                      for($i = 0;$i<$numEnllacos;$i++)
                       {
-                        echo('<div class="col"><a href="'.$links[$i].'"><div class="m-3 p-2 bg-dark text-white">Enllaç '.$i.' </div></a></div>'); 
+                        echo('<div class="col"><a href="'.$links[$i][1].'"><div class="m-3 p-2 bg-dark text-white">'.$links[$i][0].' </div></a></div>'); 
                       }
                       ?>
                     </div>

@@ -13,6 +13,14 @@ $enllac = 'http://localhost/ComACasaEnlloc/index.php?fons=';
 
 for($i = 1;$i<=sizeof($images);$i++)
     {
-        $links[$i]=$enllac.$i;
+        $imatgeLink[$i]=$enllac.$i;
     }
 
+$links = array(
+   array("Correu","https:\\gmail.com"),
+   array("Institud","https:\\cendrassos.net"),
+   array("Moodle","https:\\moodle.cendrassos.net"),
+   array("Pràctica","https://docs.google.com/document/d/1T-9JPf26BGGyfVmZJScdddOmpnXF6vCHDsVGEzfH_rM/edit#"),
+   array("Github","https://github.com/daw-cendrassos-2021"),
+   array("Github de la practica","https://github.com/RXarles/UF1P1rogerXarles")
+);
