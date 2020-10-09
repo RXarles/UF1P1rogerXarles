@@ -12,31 +12,57 @@
     <title>Com a casa enlloc!</title>
 
     <?php
-  if(isset($_GET["fons"]))$fons = $_GET["fons"];
-  else $fons = 1;
-  
+  include 'config.php';
+
+  if((int)$_POST["linkSelection"]!=0)
+  {
+    $indexLink = (int)$_POST["linkSelection"];
+  }
+  else
+  {
+    $indexLink = 1;
+  }
+
+  $titolAux = $_POST["titol"];
+  $enllacAux = $_POST["enllac"];
+
+  $enllacos = 0;
+  for($i = 0;$i<sizeOf($enllacAux);$i++)
+  {
+    if(!empty($titolAux[$i]) && !empty($enllacAux[$i]))
+    {
+      if($enllacos == 0) $enllacos = array();
+      $enllacos[$i] = array($titolAux[$i],$enllacAux[$i]);
+    }
+  }
+
+ 
     ?>
   </head>
   <body <?php 
-  include 'config.php';
 
-  echo(' style ="background-image: url('.$images[$fons].') "')?>>
+  echo(' style ="background-size: cover; background-image: url('.$images[$indexLink]["link"].') "')?>>
     
     <h1 class="text-center" >Com a casa enlloc!</h1>
-
+
     <div class="container">
         <div class="row">
             <div class="col-8">
                 <div class="container">
                     <div class="row row-cols-3">
                       <?php
-                      include 'config.php';
-
-                      $numEnllacos = sizeof($links);
-
-                      for($i = 0;$i<$numEnllacos;$i++)
+                      
+                      for($i = 0;$i<sizeof($links);$i++)
                       {
                         echo('<div class="col"><a href="'.$links[$i][1].'"><div class="m-3 p-2 bg-dark text-white">'.$links[$i][0].' </div></a></div>'); 
+                      }
+
+                      if($enllacos != 0)
+                      {
+                        for($i = 0;$i<sizeof($enllacos);$i++)
+                        {
+                          echo('<div class="col"><a href="'.$enllacos[$i][1].'"><div class="m-3 p-2 bg-dark text-white">'.$enllacos[$i][0].' </div></a></div>'); 
+                        }
                       }
                       ?>
                     </div>
@@ -45,7 +71,7 @@
             <div class="col-4">
               <?php
                 include 'funcions.php';
-                echo(creaCalendari(date('n'),array(4,5,6,7)));
+                echo(creaCalendari(date('n'),array(12)));
               ?>
             </div>
         </div>

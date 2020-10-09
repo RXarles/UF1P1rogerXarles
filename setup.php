@@ -8,25 +8,56 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css">
-
     <title>Enllaços</title>
 
   </head>
   <body>
 
-    <div class="container">
-        <div class="row">
-            <?php
-            include 'config.php';
 
-            for($i = 1;$i<=sizeof($links);$i++)
-            {
-                echo('<div class="col-7"><a href="'.$links[$i].'"><div class="m-3 p-2 bg-dark text-white">Enllaç '.$i.' </div></a></div>'); 
-            }                    
-            ?>
-            </div>
-    </div>
+  <form action="index.php" method="post">
 
+                    <div class="form">
+                      <div class="form-group">
+                        <label for="selectLink">Quin fons de pantalla vols</label>
+                        <select name="linkSelection" class="form-control" id="selectLink">
+                          <option>-</option>
+                            <?php
+                            include 'config.php';
+
+                            foreach ($images as $codi => $link) {
+                            ?>
+                          <option value="<?=$codi;?>"><?=$link["nom"];?></option>
+                            <?php }?>
+                        </select>
+                      </div>
+                    </div id="links">
+
+
+                      <?php
+
+                      
+                      
+                      $numEnllacos = 3;
+
+                      for($i = 0;$i<$numEnllacos;$i++)
+                      {
+                        echo('
+                        <div class="form">
+                          <div class="form-group">
+                            <label for="inputTitol'.($i+1).'">Titol'.($i+1).'</label>
+                            <input name="titol[]" type="text" class="form-control" id="inputTitol'.($i+1).'" placeholder="El teu titol">
+
+                            <label for="inputEnllac'.($i+1).'">Enllaç'.($i+1).'</label>
+                            <input name="enllac[]" type="text" class="form-control" id="inputEnllac'.($i+1).'" placeholder="El teu enllaç">
+                          </div>
+                        </div>');
+
+                     }
+                     
+                      ?>
+                   
+                      <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
 
     <!-- Optional JavaScript -->
 

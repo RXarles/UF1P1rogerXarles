@@ -1,5 +1,6 @@
 <?php
 
+
 function creaCalendari($mes, $festius)
 {
     return('<div class="container">
@@ -40,13 +41,12 @@ function creaDies($mes,$festius)
     $result = "";
     $nullDays = returnFirstDay();
     $day = 1;
-    for($i = 0;$i <6;$i++)
+    while($day<date('t',$mes))
     {
-        if($day>date('t')) break;
         $result = $result.'<tr>';
         for($j = 0;$j <7;$j++)
         {
-            if($nullDays>0 || $day>date('t'))
+            if($nullDays>0 || $day>date('t',$mes))
             {
                 $result = $result.'<td>-</td>';
                 $nullDays--;
@@ -58,7 +58,7 @@ function creaDies($mes,$festius)
                 }
                 else if(isOnArray($festius,$day))
                 {
-                    $result = $result.'<td bgcolor="#FF0000"><font color="#FFFFFF">'.$day.'</font></td>'; // Posar aqui els festius
+                    $result = $result.'<td bgcolor="#FF0000"><font color="#FFFFFF">'.$day.'</font></td>'; 
                 }
                 else
                 {
