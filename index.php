@@ -12,6 +12,8 @@
     <title>Com a casa enlloc!</title>
 
     <?php
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
   include 'config.php';
 
   if((int)$_POST["linkSelection"]!=0)
@@ -25,14 +27,18 @@
 
   $titolAux = $_POST["titol"];
   $enllacAux = $_POST["enllac"];
+  $afegir = $_POST["afegir"];
+
 
   $enllacos = 0;
-  for($i = 0;$i<sizeOf($enllacAux);$i++)
-  {
-    if(!empty($titolAux[$i]) && !empty($enllacAux[$i]))
+  if(is_array($enllacAux) && is_array($afegir)){
+    for($i = 0;$i<sizeOf($enllacAux);$i++)
     {
-      if($enllacos == 0) $enllacos = array();
-      $enllacos[$i] = array($titolAux[$i],$enllacAux[$i]);
+      if(!empty($titolAux[$i]) && filter_var($enllacAux[$i], FILTER_VALIDATE_URL) && in_array('afegir'.($i+1), $afegir))
+      {
+        if($enllacos == 0) $enllacos = array();
+        array_push($enllacos, array(trim(filter_var($titolAux[$i], FILTER_SANITIZE_STRING)),$enllacAux[$i]));
+      }
     }
   }
 

@@ -37,7 +37,7 @@
 
                       
                       
-                      $numEnllacos = 3;
+                      $numEnllacos = 2;
 
                       for($i = 0;$i<$numEnllacos;$i++)
                       {
@@ -49,9 +49,12 @@
 
                             <label for="inputEnllac'.($i+1).'">Enllaç'.($i+1).'</label>
                             <input name="enllac[]" type="text" class="form-control" id="inputEnllac'.($i+1).'" placeholder="El teu enllaç">
-                          </div>
-                        </div>');
 
+                            <br><input name="afegir[]" type="checkbox" value="afegir'.($i+1).'">Afegir enllaç<br>
+
+                          </div>
+                        </div>
+                        ');
                      }
                      
                       ?>
