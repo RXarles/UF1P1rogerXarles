@@ -1,8 +1,10 @@
 <?php
 
 
-function creaCalendari($mes, $festius)
+function creaCalendari($mes,$any, $festius)
 {
+    $nomMes = date("F", mktime(0, 0, 0, $mes, 10));
+
     return('<div class="container">
     <div class="row">
       <div class="span12 bg-gradient-light">
@@ -11,7 +13,7 @@ function creaCalendari($mes, $festius)
                       <tr>
                         <th colspan="7" >
                           <a class="btn"><i class="icon-chevron-left"></i></a>
-                          <a class="btn">'.date('F').' '.date('Y').'</a>
+                          <a class="btn">'.$nomMes.' '.$any.'</a>
                           <a class="btn"><i class="icon-chevron-right"></i></a>
                         </th>
                       </tr>
@@ -26,7 +28,7 @@ function creaCalendari($mes, $festius)
                       </tr>
                   </thead>
                   <tbody>
-                  '.creaDies($mes,$festius).'
+                  '.creaDies($mes,$any,$festius).'
                   </tbody>
               </table>    
       </div>
@@ -36,17 +38,21 @@ function creaCalendari($mes, $festius)
 
 }
 
-function creaDies($mes,$festius)
+function creaDies($mes,$any,$festius)
 {
     $result = "";
-    $nullDays = returnFirstDay();
+    $nullDays = returnFirstDay($mes,$any);
     $day = 1;
-    while($day<date('t',$mes))
+
+    $d = new DateTime( $any.'-'.$mes.'-1' ); 
+    $d =$d->format( 't' );
+
+    while($day<$d)
     {
         $result = $result.'<tr>';
         for($j = 0;$j <7;$j++)
         {
-            if($nullDays>0 || $day>date('t',$mes))
+            if($nullDays>0 || $day>$d)
             {
                 $result = $result.'<td>-</td>';
                 $nullDays--;
@@ -83,7 +89,7 @@ function isOnArray($festius,$dia)
     return $res;
 }
 
-function returnFirstDay()
+function returnFirstDay($mes,$any)
 {
-    return date('N', strtotime(date('Y-m-1')))-1;
+    return date('N', strtotime(date($any.'-'.$mes.'-1')))-1;
 }

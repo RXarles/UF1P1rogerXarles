@@ -77,7 +77,7 @@
             <div class="col-4">
               <?php
                 include 'funcions.php';
-                echo(creaCalendari(date('n'),array(12)));
+                echo(creaCalendari(date('n'),date('Y'),array(12)));
               ?>
             </div>
         </div>
