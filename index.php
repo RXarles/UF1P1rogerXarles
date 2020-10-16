@@ -17,7 +17,6 @@
   include 'config.php';
   include 'funcions.php';
 
-  
   // IMATGE DE FONS
 
   if((int)$_POST["linkSelection"]!=0)

@@ -13,6 +13,11 @@
   </head>
   <body class="setup">
 
+  <?php
+    include 'config.php';
+    include 'funcions.php';
+
+  ?>
 
   <form action="index.php" enctype="multipart/form-data" method="post">
 
@@ -22,7 +27,6 @@
                         <select name="linkSelection" class="form-control" id="selectLink">
                           <option>-</option>
                             <?php
-                            include 'config.php';
 
                             foreach ($images as $codi => $link) {
                             ?>
@@ -65,7 +69,8 @@
                         </div>
                         ');
                      }
-                     
+
+
                       ?>
                    
                       <button type="submit" class="btn btn-primary">Enviar</button>

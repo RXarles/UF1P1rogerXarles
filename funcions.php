@@ -101,3 +101,16 @@ function console_log( $data ){
     echo 'console.log('. json_encode( $data ) .')';
     echo '</script>';
   }
+
+
+function guardarCookie($nom,$valor)
+{
+    $s = json_encode($valor);
+
+    setcookie($nom,$s,strtotime("+1 month"));
+}
+
+function llegirCookie($str)
+{
+    return json_decode($_COOKIE[$str], true);
+}
