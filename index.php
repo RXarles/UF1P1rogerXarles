@@ -52,15 +52,33 @@
 
 
   $enllacos = 0;
+
+  $enllacCookie;
+
+  console_log(isset($enllacCookie));
+
   if(is_array($enllacAux) && is_array($afegir)){
     for($i = 0;$i<sizeOf($enllacAux);$i++)
     {
       if(!empty($titolAux[$i]) && filter_var($enllacAux[$i], FILTER_VALIDATE_URL) && in_array('afegir'.($i+1), $afegir))
       {
         if($enllacos == 0) $enllacos = array();
-        array_push($enllacos, array(trim(filter_var($titolAux[$i], FILTER_SANITIZE_STRING)),$enllacAux[$i]));
+
+        $titol = trim(filter_var($titolAux[$i], FILTER_SANITIZE_STRING));
+
+        array_push($enllacos, array($titol,$enllacAux[$i]));
+
+        if(!isset($enllacCookie)) {$enllacCookie = array();}
+
+        array_push($enllacCookie,array($titol,$enllacAux[$i]));
       }
     }
+
+    guardarCookie("enllacos",$enllacCookie);
+  }
+  else
+  {
+    $enllacCookie = llegirCookie("enllacos");
   }
     ?>
   </head>
@@ -82,11 +100,19 @@
                         echo('<div class="col"><a href="'.$links[$i][1].'"><div class="m-3 p-2 bg-dark text-white">'.$links[$i][0].' </div></a></div>'); 
                       }
 
+
                       if($enllacos != 0)
                       {
                         for($i = 0;$i<sizeof($enllacos);$i++)
                         {
                           echo('<div class="col"><a href="'.$enllacos[$i][1].'"><div class="m-3 p-2 bg-dark text-white">'.$enllacos[$i][0].' </div></a></div>'); 
+                        }
+                      }
+                      else if(isset($enllacCookie))
+                      {
+                        for($i = 0;$i<sizeof($enllacCookie);$i++)
+                        {
+                          echo('<div class="col"><a href="'.$enllacCookie[$i][1].'"><div class="m-3 p-2 bg-dark text-white">'.$enllacCookie[$i][0].' </div></a></div>'); 
                         }
                       }
                       ?>
@@ -95,7 +121,6 @@
             </div>
             <div class="col-4">
               <?php
-                include 'funcions.php';
                 echo(creaCalendari(date('n'),date('Y'),array(12)));
               ?>
             </div>
