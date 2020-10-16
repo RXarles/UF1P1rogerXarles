@@ -15,15 +15,37 @@
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
   include 'config.php';
+  include 'funcions.php';
+
+  
+  // IMATGE DE FONS
 
   if((int)$_POST["linkSelection"]!=0)
   {
     $indexLink = (int)$_POST["linkSelection"];
+    $link = $images[$indexLink]["link"];
+
   }
   else
   {
-    $indexLink = 1;
+
+    $fitxer = $_FILES['fitxer_usuari'];
+    $midaMaxima = 1000000; // en bits
+
+    if($fitxer['error']>0 || $fitxer['size'] > $midaMaxima) 
+    {
+      $link = $images[1]["link"];
+    }
+    else
+    {
+      $link = './imatges/'.$fitxer['name'];   
+      move_uploaded_file($fitxer['tmp_name'], $link);
+    }
   }
+  
+
+  
+  //ENLLAÇOS
 
   $titolAux = $_POST["titol"];
   $enllacAux = $_POST["enllac"];
@@ -41,13 +63,11 @@
       }
     }
   }
-
- 
     ?>
   </head>
   <body <?php 
-
-  echo(' style ="background-size: cover; background-image: url('.$images[$indexLink]["link"].') "')?>>
+  echo(' style ="background-size: cover; background-image: url('.$link.') "');
+  ?>>
     
     <h1 class="text-center" >Com a casa enlloc!</h1>
 

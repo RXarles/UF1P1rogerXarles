@@ -11,10 +11,10 @@
     <title>Enllaços</title>
 
   </head>
-  <body>
+  <body class="setup">
 
 
-  <form action="index.php" method="post">
+  <form action="index.php" enctype="multipart/form-data" method="post">
 
                     <div class="form">
                       <div class="form-group">
@@ -29,6 +29,15 @@
                           <option value="<?=$codi;?>"><?=$link["nom"];?></option>
                             <?php }?>
                         </select>
+                      </div>
+                    </div id="links">
+
+
+                    <div class="form">
+                      <div class="form-group">
+
+                        Enviar aquest fitxer: <input name="fitxer_usuari" type="file" />
+
                       </div>
                     </div id="links">
 

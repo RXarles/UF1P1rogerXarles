@@ -93,3 +93,11 @@ function returnFirstDay($mes,$any)
 {
     return date('N', strtotime(date($any.'-'.$mes.'-1')))-1;
 }
+
+
+
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }

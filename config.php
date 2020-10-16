@@ -7,7 +7,6 @@ $images = array(
     4=> array("nom"=>"Cel estrellat", "link"=>'https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_960_720.jpg'),
     5=> array("nom"=>"Ciutat", "link"=>'https://cdn.pixabay.com/photo/2020/06/15/17/10/ancient-5302626_960_720.jpg'),
     6=> array("nom"=>"Natura", "link"=>'https://cdn.pixabay.com/photo/2020/06/21/22/20/deer-5326958_960_720.jpg'),
-
   );
 
 $links = array(
