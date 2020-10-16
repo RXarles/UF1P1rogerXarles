@@ -17,6 +17,15 @@
     include 'config.php';
     include 'funcions.php';
 
+
+    $usuari = $_POST["usuari"];
+    $contrasenya = $_POST["contrasenya"];
+    
+    if (!comprovarUsuariContrasenya($usuari,$contrasenya,$usuaris)) {
+        header('Location: login.php?error=1&&user='.$usuari);
+        die();
+    }
+
   ?>
 
   <form action="index.php" enctype="multipart/form-data" method="post">

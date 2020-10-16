@@ -17,3 +17,13 @@ $links = array(
    array("Github","https://github.com/daw-cendrassos-2021"),
    array("Github de la practica","https://github.com/RXarles/UF1P1rogerXarles")
 );
+
+
+$usuaris = array(
+  array("usuari1","1234"),
+  array("usuari2","1234"),
+  array("usuari3","1234"),
+  array("usuari4","1234"),
+  array("usuari5","1234"),
+  array("usuari6","1234")
+);

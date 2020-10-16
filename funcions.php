@@ -114,3 +114,18 @@ function llegirCookie($str)
 {
     return json_decode($_COOKIE[$str], true);
 }
+
+
+function comprovarUsuariContrasenya($usuari,$contrasenya,$arr)
+{
+    for($i = 0; $i < sizeof($arr);$i++)
+    {
+        if($usuari == $arr[$i][0] && $contrasenya == $arr[$i][1])
+        {
+            return true;
+        }
+    }
+
+    return false;
+
+}
