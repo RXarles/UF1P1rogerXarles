@@ -18,73 +18,112 @@
     include 'funcions.php';
 
 
-    $usuari = $_POST["usuari"];
-    $contrasenya = $_POST["contrasenya"];
+    session_start();
+
+    if(empty($_POST["usuari"]) && is_null($_SESSION["logged"]))
+    {
+      header('Location: login.php');
+      die();
+    }
+
+
+
+    if(empty($_POST["usuari"]))
+    {
+      $usuari = "";
+    }
+    else
+    {
+      $usuari = $_POST["usuari"];
+    }
+
+    if(empty($_POST["contrasenya"]))
+    {
+      $contrasenya = "";
+    }
+    else
+    {
+      $contrasenya = $_POST["contrasenya"];
+    }
+
     
-    if (!comprovarUsuariContrasenya($usuari,$contrasenya,$usuaris)) {
+    if (!comprovarUsuariContrasenya($usuari,$contrasenya,$usuaris) && $usuari != "" && $contrasenya != "") {
         header('Location: login.php?error=1&&user='.$usuari);
         die();
     }
 
+    if(is_null($_SESSION["usuari"]))
+    {
+      $_SESSION["usuari"]=$usuari;
+    }
+
+    $_SESSION["logged"]=true;
+
   ?>
+
+  <div class="form2">
+    <div class="form-group">
+      <div><?php echo("Benvingut <strong>".$_SESSION["usuari"]."</strong>")?></div>
+    </div>
+  </div>
 
   <form action="index.php" enctype="multipart/form-data" method="post">
 
-                    <div class="form">
-                      <div class="form-group">
-                        <label for="selectLink">Quin fons de pantalla vols</label>
-                        <select name="linkSelection" class="form-control" id="selectLink">
-                          <option>-</option>
-                            <?php
+        <div class="form">
+          <div class="form-group">
+            <label for="selectLink">Quin fons de pantalla vols</label>
+            <select name="linkSelection" class="form-control" id="selectLink">
+              <option>-</option>
+                <?php
 
-                            foreach ($images as $codi => $link) {
-                            ?>
-                          <option value="<?=$codi;?>"><?=$link["nom"];?></option>
-                            <?php }?>
-                        </select>
-                      </div>
-                    </div id="links">
-
-
-                    <div class="form">
-                      <div class="form-group">
-
-                        Enviar aquest fitxer: <input name="fitxer_usuari" type="file" />
-
-                      </div>
-                    </div id="links">
+                foreach ($images as $codi => $link) {
+                ?>
+              <option value="<?=$codi;?>"><?=$link["nom"];?></option>
+                <?php }?>
+            </select>
+          </div>
+        </div>
 
 
-                      <?php
+        <div class="form">
+          <div class="form-group">
 
-                      
-                      
-                      $numEnllacos = 2;
+            Enviar aquest fitxer: <input name="fitxer_usuari" type="file" />
 
-                      for($i = 0;$i<$numEnllacos;$i++)
-                      {
-                        echo('
-                        <div class="form">
-                          <div class="form-group">
-                            <label for="inputTitol'.($i+1).'">Titol'.($i+1).'</label>
-                            <input name="titol[]" type="text" class="form-control" id="inputTitol'.($i+1).'" placeholder="El teu titol">
+          </div>
+        </div>
 
-                            <label for="inputEnllac'.($i+1).'">Enllaç'.($i+1).'</label>
-                            <input name="enllac[]" type="text" class="form-control" id="inputEnllac'.($i+1).'" placeholder="El teu enllaç">
 
-                            <br><input name="afegir[]" type="checkbox" value="afegir'.($i+1).'">Afegir enllaç<br>
+          <?php
 
-                          </div>
-                        </div>
-                        ');
-                     }
+          
+          
+          $numEnllacos = 2;
 
-                     
+          for($i = 0;$i<$numEnllacos;$i++)
+          {
+            echo('
+            <div class="form">
+              <div class="form-group">
+                <label for="inputTitol'.($i+1).'">Titol'.($i+1).'</label>
+                <input name="titol[]" type="text" class="form-control" id="inputTitol'.($i+1).'" placeholder="El teu titol">
 
-                      ?>
-                   
-                      <button type="submit" class="btn btn-primary">Enviar</button>
-          </form>
+                <label for="inputEnllac'.($i+1).'">Enllaç'.($i+1).'</label>
+                <input name="enllac[]" type="text" class="form-control" id="inputEnllac'.($i+1).'" placeholder="El teu enllaç">
+
+                <br><input name="afegir[]" type="checkbox" value="afegir'.($i+1).'">Afegir enllaç<br>
+
+              </div>
+            </div>
+            ');
+          }
+
+          
+
+          ?>
+        
+          <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
 
     <!-- Optional JavaScript -->
 

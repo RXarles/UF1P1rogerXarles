@@ -22,7 +22,13 @@
     $error = $_GET["error"];
     $user = $_GET["user"];
 
-    console_log($user);
+    session_start();
+
+    if ($_SESSION["logged"]==true) {
+        header('Location: setup.php');
+        die();
+    }
+
   ?>
 
 <form action="setup.php" method="post">
