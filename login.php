@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+    include 'config.php';
+    include 'funcions.php';
+
+    $error = $_GET["error"];
+    $user = $_GET["user"];
+
+
+    if ($_SESSION["logged"]==true) {
+        header('Location: setup.php');
+        die();
+    }
+
+  ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,23 +31,7 @@
   </head>
   <body class="login">
 
-  <?php
-    error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-    include 'config.php';
-    include 'funcions.php';
-
-    $error = $_GET["error"];
-    $user = $_GET["user"];
-
-    session_start();
-
-    if ($_SESSION["logged"]==true) {
-        header('Location: setup.php');
-        die();
-    }
-
-  ?>
 
 <form action="setup.php" method="post">
     <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh">        <div class="form">

@@ -55,8 +55,6 @@
 
   $enllacCookie;
 
-  console_log(isset($enllacCookie));
-
   if(is_array($enllacAux) && is_array($afegir)){
     for($i = 0;$i<sizeOf($enllacAux);$i++)
     {
