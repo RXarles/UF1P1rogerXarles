@@ -41,6 +41,12 @@
     {
       $_SESSION["usuari"]=$usuari;
     }
+    else
+    {
+      $usuari = $_SESSION["usuari"];
+      
+    }
+
 
     $_SESSION["logged"]=true;
 
@@ -65,7 +71,7 @@
 
   <div class="form2">
     <div class="form-group">
-      <div><?php echo("Benvingut <strong>".$_SESSION["usuari"]."</strong>")?></div>
+      <div><?php echo("Benvingut <strong>".$usuari."</strong>")?></div>
     </div>
   </div>
 

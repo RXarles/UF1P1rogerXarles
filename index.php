@@ -25,7 +25,7 @@
     $link = $images[$indexLink]["link"];
 
   }
-  else
+  else if(!is_null($_FILES['fitxer_usuari']))
   {
 
     $fitxer = $_FILES['fitxer_usuari'];
@@ -41,9 +41,11 @@
       move_uploaded_file($fitxer['tmp_name'], $link);
     }
   }
-  
+  else
+  {
+    $link = $images[1]["link"];
+  }
 
-  
   //ENLLAÇOS
 
   $titolAux = $_POST["titol"];
