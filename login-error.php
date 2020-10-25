@@ -5,7 +5,6 @@
     include 'config.php';
     include 'funcions.php';
 
-
     if ($_SESSION["logged"]==true) {
         header('Location: setup.php');
         die();
@@ -19,7 +18,10 @@
     {
       $user = $_SESSION["usuari"];
     }
+
+    $error = $_SESSION["error"];
     
+
   ?>
 
 <!doctype html>
@@ -47,6 +49,11 @@
 
             <input name="contrasenya" type="password" class="form-control" id="inputContrasenya" placeholder="Contrasenya">
             </div>
+
+            <?php if ($error != "") {
+                ?>
+                <div class="alert alert-danger" role="alert"><?=$error;?></div>
+            <?php }?>
 
             <button type="submit" class="btn btn-primary">Enviar</button>
 

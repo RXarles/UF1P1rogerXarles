@@ -5,50 +5,32 @@
     include 'funcions.php';
 
 
-    if(empty($_POST["usuari"]) && is_null($_SESSION["logged"]))
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+  {
+    if(empty($_POST["usuari"]) || empty($_POST["contrasenya"]))
     {
-      header('Location: login.php');
-      die();
+      sendToLogin("Has d'indicar usuari i contrasenya");
     }
 
+    $usuari = $_POST["usuari"];
 
-
-    if(empty($_POST["usuari"]))
+    if(comprovarUsuariContrasenya($usuari,$_POST["contrasenya"],$usuaris))
     {
-      $usuari = "";
-    }
-    else
-    {
-      $usuari = $_POST["usuari"];
-    }
-
-    if(empty($_POST["contrasenya"]))
-    {
-      $contrasenya = "";
-    }
-    else
-    {
-      $contrasenya = $_POST["contrasenya"];
-    }
-
-    
-    if (!comprovarUsuariContrasenya($usuari,$contrasenya,$usuaris) && $usuari != "" && $contrasenya != "") {
-        header('Location: login.php?error=1&&user='.$usuari);
-        die();
-    }
-
-    if(is_null($_SESSION["usuari"]))
-    {
+      $_SESSION["logged"]=true;
       $_SESSION["usuari"]=$usuari;
     }
-    else
     {
-      $usuari = $_SESSION["usuari"];
-      
+      sendToLogin("Has introduit un usuari i contrasenya incorrectes");
     }
 
+  }
+  else if(is_null($_SESSION["logged"]))
+  {
+    sendToLogin("Has d'iniciar sessió");
+  }
 
-    $_SESSION["logged"]=true;
+  $usuari = $_SESSION["usuari"];
 
   ?>
 
@@ -71,7 +53,7 @@
 
   <div class="form2">
     <div class="form-group">
-      <div><?php echo("Benvingut <strong>".$usuari."</strong>")?></div>
+      <div>Benvingut <strong><?=$usuari?></strong></div>
     </div>
   </div>
 

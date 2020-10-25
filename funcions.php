@@ -129,3 +129,11 @@ function comprovarUsuariContrasenya($usuari,$contrasenya,$arr)
     return false;
 
 }
+
+
+function sendToLogin($error)
+{
+    header('Location: login-error.php');
+    $_SESSION["error"] = $error;
+    die();
+}
