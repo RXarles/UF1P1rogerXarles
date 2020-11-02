@@ -1,28 +1,28 @@
 <?php
-    session_start();
-    error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-    include 'config.php';
-    include 'funcions.php';
+session_start();
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-    if ($_SESSION["logged"]==true) {
-        header('Location: setup.php');
-        die();
-    }
+include 'config.php';
+include 'funcions.php';
 
-    if(is_null($_SESSION["usuari"]))
-    {
-      $user = "";
-    }
-    else
-    {
-      $user = $_SESSION["usuari"];
-    }
+if ($_SESSION["logged"] == true) {
+    header('Location: ../public/setup.php');
+    die();
+}
 
-    $error = $_SESSION["error"];
-    
+if (is_null($_SESSION["usuari"])) {
+    $user = "";
+} else {
+    $user = $_SESSION["usuari"];
+}
 
-  ?>
+$error = $_SESSION["error"];
+
+$_SESSION["error"] = "";
+
+console_log($_SESSION["usuari"]);
+?>
 
 <!doctype html>
 <html lang="en">
@@ -33,7 +33,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../public/index.css">
     <title>Login</title>
 
   </head>
@@ -41,7 +41,7 @@
 
 
 
-<form action="setup.php" method="post">
+<form action="../public/setup.php" method="post">
     <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh">        <div class="form">
             <div class="form-group">
 

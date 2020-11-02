@@ -1,38 +1,31 @@
 <?php
     session_start();
     
-    include 'config.php';
-    include 'funcions.php';
+    include '../src/config.php';
+    include '../src/funcions.php';
 
 
-
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') 
-  {
-    if(empty($_POST["usuari"]) || empty($_POST["contrasenya"]))
-    {
-      sendToLogin("Has d'indicar usuari i contrasenya");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($_POST["usuari"]) || empty($_POST["contrasenya"])) {
+        sendToLogin("Has d'indicar usuari i contrasenya");
     }
 
-    $usuari = $_POST["usuari"];
-
-    if(comprovarUsuariContrasenya($usuari,$_POST["contrasenya"],$usuaris))
-    {
-      $_SESSION["logged"]=true;
-      $_SESSION["usuari"]=$usuari;
+    $usuari = validateString($_POST["usuari"]);
+    $_SESSION["usuari"] = $usuari;
+    if (comprovarUsuariContrasenya($usuari, $_POST["contrasenya"])) {
+        $_SESSION["logged"] = true;
+        $_SESSION["usuari"] = $usuari;
     }
     {
-      sendToLogin("Has introduit un usuari i contrasenya incorrectes");
+    sendToLogin("Has introduit un usuari i contrasenya incorrectes");
     }
-
-  }
-  else if(is_null($_SESSION["logged"]))
-  {
+} elseif (is_null($_SESSION["logged"])) {
     sendToLogin("Has d'iniciar sessió");
-  }
+}
 
   $usuari = $_SESSION["usuari"];
 
-  ?>
+?>
 
 <!doctype html>
 <html lang="en">
@@ -67,7 +60,7 @@
                 <?php
 
                 foreach ($images as $codi => $link) {
-                ?>
+                    ?>
               <option value="<?=$codi;?>"><?=$link["nom"];?></option>
                 <?php }?>
             </select>
@@ -88,29 +81,28 @@
 
           
           
-          $numEnllacos = 2;
+            $numEnllacos = 2;
 
-          for($i = 0;$i<$numEnllacos;$i++)
-          {
-            echo('
+            for ($i = 0; $i < $numEnllacos; $i++) {
+                echo('
             <div class="form">
               <div class="form-group">
-                <label for="inputTitol'.($i+1).'">Titol'.($i+1).'</label>
-                <input name="titol[]" type="text" class="form-control" id="inputTitol'.($i+1).'" placeholder="El teu titol">
+                <label for="inputTitol' . ($i + 1) . '">Titol' . ($i + 1) . '</label>
+                <input name="titol[]" type="text" class="form-control" id="inputTitol' . ($i + 1) . '" placeholder="El teu titol">
 
-                <label for="inputEnllac'.($i+1).'">Enllaç'.($i+1).'</label>
-                <input name="enllac[]" type="text" class="form-control" id="inputEnllac'.($i+1).'" placeholder="El teu enllaç">
+                <label for="inputEnllac' . ($i + 1) . '">Enllaç' . ($i + 1) . '</label>
+                <input name="enllac[]" type="text" class="form-control" id="inputEnllac' . ($i + 1) . '" placeholder="El teu enllaç">
 
-                <br><input name="afegir[]" type="checkbox" value="afegir'.($i+1).'">Afegir enllaç<br>
+                <br><input name="afegir[]" type="checkbox" value="afegir' . ($i + 1) . '">Afegir enllaç<br>
 
               </div>
             </div>
             ');
-          }
+            }
 
           
 
-          ?>
+            ?>
         
           <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
