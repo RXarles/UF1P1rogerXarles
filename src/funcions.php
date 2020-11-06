@@ -1,6 +1,6 @@
 <?php
 
-function creaCalendari($mes, $any, $festius)
+function creaCalendari ($mes, $any, $festius)
 {
     $nomMes = date("F", mktime(0, 0, 0, $mes, 10));
 
@@ -107,9 +107,8 @@ function llegirCookie($str)
 }
 
 
-function comprovarUsuariContrasenya($usuari, $contrasenya)
+function comprovarUsuariContrasenya($usuari, $contrasenya,$sql)
 {
-    $sql = iniciarSQL();
     $users = array();
     $query = "select nom,contrasenya from usuari";
     foreach ($sql->query($query, PDO::FETCH_ASSOC) as $user) {
@@ -125,14 +124,6 @@ function comprovarUsuariContrasenya($usuari, $contrasenya)
     return false;
 }
 
-
-function sendToLogin($error)
-{
-    header('Location: ../src/login.php');
-    $_SESSION["error"] = $error;
-    die();
-}
-
 // Retorna boolean
 function validateURL($url)
 {
@@ -143,19 +134,4 @@ function validateURL($url)
 function validateString($str)
 {
     return trim(filter_var($str, FILTER_SANITIZE_STRING));
-}
-
-
-function iniciarSQL()
-{
-    $dsn = 'mysql:dbname=cae_daw;host=localhost';
-    $admin = 'root';
-    $clau = 'WhateverPassword';
-    try {
-        $sql = new PDO($dsn, $admin, $clau);
-    } catch (PDOException $e) {
-        die('Ha fallat la connexió: ' . $e->getMessage());
-    }
-
-    return $sql;
 }

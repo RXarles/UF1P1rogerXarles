@@ -1,29 +1,3 @@
-<?php
-
-session_start();
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
-include 'config.php';
-include 'funcions.php';
-
-if ($_SESSION["logged"] == true) {
-    header('Location: ../public/setup.php');
-    die();
-}
-
-if (is_null($_SESSION["usuari"])) {
-    $user = "";
-} else {
-    $user = $_SESSION["usuari"];
-}
-
-$error = $_SESSION["error"];
-
-$_SESSION["error"] = "";
-
-console_log($_SESSION["usuari"]);
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,7 +7,7 @@ console_log($_SESSION["usuari"]);
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="../public/index.css">
+    <link rel="stylesheet" href="index.css">
     <title>Login</title>
 
   </head>
@@ -41,11 +15,12 @@ console_log($_SESSION["usuari"]);
 
 
 
-<form action="../public/setup.php" method="post">
-    <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh">        <div class="form">
+<form action="index.php?r=loginForm" method="post">
+    <div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh">       
+     <div class="form">
             <div class="form-group">
 
-            <input name="usuari" type="text" class="form-control" id="inputUsuari" value="<?=$user;?>" placeholder="Usuari"><br>
+            <input name="usuari" type="text" class="form-control" id="inputUsuari" value="<?=$usuari;?>" placeholder="Usuari"><br>
 
             <input name="contrasenya" type="password" class="form-control" id="inputContrasenya" placeholder="Contrasenya">
             </div>

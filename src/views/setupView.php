@@ -1,32 +1,3 @@
-<?php
-    session_start();
-    
-    include '../src/config.php';
-    include '../src/funcions.php';
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (empty($_POST["usuari"]) || empty($_POST["contrasenya"])) {
-        sendToLogin("Has d'indicar usuari i contrasenya");
-    }
-
-    $usuari = validateString($_POST["usuari"]);
-    $_SESSION["usuari"] = $usuari;
-    if (comprovarUsuariContrasenya($usuari, $_POST["contrasenya"])) {
-        $_SESSION["logged"] = true;
-        $_SESSION["usuari"] = $usuari;
-    }
-    {
-    sendToLogin("Has introduit un usuari i contrasenya incorrectes");
-    }
-} elseif (is_null($_SESSION["logged"])) {
-    sendToLogin("Has d'iniciar sessió");
-}
-
-  $usuari = $_SESSION["usuari"];
-
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -41,16 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   </head>
   <body class="setup">
-
-  
-
   <div class="form2">
     <div class="form-group">
       <div>Benvingut <strong><?=$usuari?></strong></div>
     </div>
   </div>
 
-  <form action="index.php" enctype="multipart/form-data" method="post">
+  <form action="index.php?r=setupForm" enctype="multipart/form-data" method="post">
 
         <div class="form">
           <div class="form-group">
@@ -58,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <select name="linkSelection" class="form-control" id="selectLink">
               <option>-</option>
                 <?php
-
                 foreach ($images as $codi => $link) {
                     ?>
               <option value="<?=$codi;?>"><?=$link["nom"];?></option>
@@ -66,43 +33,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
           </div>
         </div>
-
-
-        <div class="form">
-          <div class="form-group">
-
-            Enviar aquest fitxer: <input name="fitxer_usuari" type="file" />
-
-          </div>
-        </div>
-
-
           <?php
 
-          
-          
             $numEnllacos = 2;
 
-            for ($i = 0; $i < $numEnllacos; $i++) {
-                echo('
+            for ($i = 1; $i <= $numEnllacos; $i++) {?>
             <div class="form">
               <div class="form-group">
-                <label for="inputTitol' . ($i + 1) . '">Titol' . ($i + 1) . '</label>
-                <input name="titol[]" type="text" class="form-control" id="inputTitol' . ($i + 1) . '" placeholder="El teu titol">
+                <label for="inputTitol <?=$i?>">Titol <?=$i?></label>
+                <input name="titol[]" type="text" class="form-control" id="inputTitol <?=$i?>" placeholder="El teu titol">
 
-                <label for="inputEnllac' . ($i + 1) . '">Enllaç' . ($i + 1) . '</label>
-                <input name="enllac[]" type="text" class="form-control" id="inputEnllac' . ($i + 1) . '" placeholder="El teu enllaç">
+                <label for="inputEnllac<?=$i?>">Enllaç <?=$i?></label>
+                <input name="enllac[]" type="text" class="form-control" id="inputEnllac<?=$i?>" placeholder="El teu enllaç">
 
-                <br><input name="afegir[]" type="checkbox" value="afegir' . ($i + 1) . '">Afegir enllaç<br>
+                <br><input name="afegir[]" type="checkbox" value="afegir<?=$i?>">Afegir enllaç<br>
 
               </div>
             </div>
-            ');
-            }
 
-          
-
-            ?>
+            <?php } ?>
         
           <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
