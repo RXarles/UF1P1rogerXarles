@@ -11,7 +11,7 @@ namespace Daw;
 
 /**
     * Sessio: model que gestiona la sessió.
-    * @author: Dani Prados dprados@cendrassos.net
+    * @author: Roger Xarles rxarles@cendrassos.net
     *
     * Per guardar, recuperar i gestionar la sessió.
     *

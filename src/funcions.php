@@ -147,8 +147,3 @@ function validateString($str)
 {
     return trim(filter_var($str, FILTER_SANITIZE_STRING));
 }
-
-function logOut($sesion)
-{
-    
-}

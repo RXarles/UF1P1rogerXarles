@@ -1,6 +1,8 @@
 <?php
 require_once "../src/models/sessio.php";
 require_once "../src/models/imatges.php";
+require_once "../src/models/usuaris.php";
+require_once "../src/models/enllacos.php";
 
 
 $imatges = array(
@@ -16,14 +18,17 @@ $linksInicials = array(
   array("codi" => 1, "titol"=>"Google","link"=>"https://www.google.com/","codiUsuari"=>1),
   array("codi" => 2, "titol"=>"Youtube","link"=>"https://www.youtube.com/?hl=ca&gl=ES","codiUsuari"=>1),
   array("codi" => 3, "titol"=>"Moodle","link"=>"https://moodle.cendrassos.net/","codiUsuari"=>1),
+  array("codi" => 4, "titol"=>"GoogleAdmin","link"=>"https://www.google.com/","codiUsuari"=>2),
+  array("codi" => 5, "titol"=>"YoutubeAdmin","link"=>"https://www.youtube.com/?hl=ca&gl=ES","codiUsuari"=>2),
+  array("codi" => 6, "titol"=>"MoodleAdmin","link"=>"https://moodle.cendrassos.net/","codiUsuari"=>2),
+  array("codi" => 7, "titol"=>"GoogleUsuari1","link"=>"https://www.google.com/","codiUsuari"=>3),
+  array("codi" => 8, "titol"=>"YoutubeUsuari1","link"=>"https://www.youtube.com/?hl=ca&gl=ES","codiUsuari"=>3),
+  array("codi" => 9, "titol"=>"MoodleUsuari1","link"=>"https://moodle.cendrassos.net/","codiUsuari"=>3),
 );
 
 $usuarisInicials = array(
-  array("codi" => 1, "nom" =>  "Guest","contrasenya" =>"1234","fonsIndex"=>1),
-  array("codi" => 2, "nom" =>  "usuari1","contrasenya" =>"1234","fonsIndex"=>2),
-  array("codi" => 3, "nom" =>  "usuari2","contrasenya" =>"1234","fonsIndex"=>3),
-  array("codi" => 4, "nom" =>  "usuari3","contrasenya" =>"1234","fonsIndex"=>4),
-  array("codi" => 5, "nom" =>  "usuari4","contrasenya" =>"1234","fonsIndex"=>5),
-  array("codi" => 6, "nom" =>  "usuari5","contrasenya" =>"1234","fonsIndex"=>6),
+  array("codi" => 1, "nom" =>  "generic","contrasenya" =>"1234","fonsIndex"=>1),
+  array("codi" => 2, "nom" =>  "admin","contrasenya" =>"1234","fonsIndex"=>2),
+  array("codi" => 3, "nom" =>  "usuari1","contrasenya" =>"1234","fonsIndex"=>3),
 );
 

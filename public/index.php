@@ -1,7 +1,6 @@
 <?php
 //error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-
 include "../src/config.php";
 include "../src/funcions.php";
 
@@ -24,27 +23,37 @@ $imatges = new Daw\Imatges();
 $sessio = new Daw\Sessio();
 
 
+$usuaris = new Daw\Usuaris();
+$usuaris->initialize($sql);
+
+$enllacos = new Daw\Enllacos();
+$enllacos->initialize($sql);
+
+
+$enllacos->deleteTable();
+
+
 if($r=="setup")
 {
-    ctrlSetup($sessio); // FUNCIONA
+    ctrlSetup($sessio); 
 }
 else if($r == "setupForm")
 {
-    ctrlSetupForm($_POST, $sessio); // EN CONSTRUCCIO
+    ctrlSetupForm($_POST, $sessio); 
 }
 else if($r=="portada")
 {
-    ctrlPortada($sessio); // FUNCIONA
+    ctrlPortada($sessio); 
 }
 else if($r == "loginForm")
 {
-    ctrlLoginForm($_POST, $sessio,$sql); // FUNCIONA
+    ctrlLoginForm($_POST, $sessio,$sql); 
 }
 else if($r == "login"){
-    ctrlLogin($_GET, $sessio); // FUNCIONA
+    ctrlLogin($_GET, $sessio); 
 }
 else if($r == "logout"){
-    ctrlLogout($sessio); // EN CONSTRUCCIO
+    ctrlLogout($sessio); 
 }
 else {
     header("Location:index.php?r=login");
