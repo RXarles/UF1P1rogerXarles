@@ -14,6 +14,17 @@
     
   </head>
   <body style ="background-size: cover; background-image: url(<?=$link?>)">
+
+    
+    
+    <div class="form2">
+      <div class="form-group">
+        <div>Benvingut <strong><?=$usuari?></strong></div>
+      </div>
+      <form action="index.php?r=logout" method="post">
+        <button type="submit" class="btn btn-dark">Logout</button>
+      </form>
+    </div>
     
     <h1 class="text-center" >Com a casa enlloc!</h1>
 

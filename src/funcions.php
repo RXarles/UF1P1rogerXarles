@@ -84,8 +84,6 @@ function returnFirstDay($mes, $any)
     return date('N', strtotime(date($any . '-' . $mes . '-1'))) - 1;
 }
 
-
-
 function console_log($data)
 {
     echo '<script>';
@@ -106,6 +104,20 @@ function llegirCookie($str)
     return json_decode($_COOKIE[$str], true);
 }
 
+
+function iniciaSQL()
+{
+    $dsn = 'mysql:dbname=cae_daw;host=localhost';
+    $admin = 'root';
+    $clau = 'WhateverPassword';
+    try {
+        $sql = new PDO($dsn, $admin, $clau);
+    } catch (PDOException $e) {
+        die('Ha fallat la connexió: ' . $e->getMessage());
+    }
+
+    return $sql;
+}
 
 function comprovarUsuariContrasenya($usuari, $contrasenya,$sql)
 {
@@ -134,4 +146,9 @@ function validateURL($url)
 function validateString($str)
 {
     return trim(filter_var($str, FILTER_SANITIZE_STRING));
+}
+
+function logOut($sesion)
+{
+    
 }

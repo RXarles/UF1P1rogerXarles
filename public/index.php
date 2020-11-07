@@ -7,22 +7,16 @@ include "../src/funcions.php";
 
 include "../src/controllers/login.php";
 include "../src/controllers/loginForm.php";
+include "../src/controllers/logout.php";
 include "../src/controllers/portada.php";
 include "../src/controllers/setup.php";
-//include "../src/controllers/setupForm.php";
+include "../src/controllers/setupForm.php";
 
 
 $r = $_REQUEST["r"];
 
 
-$dsn = 'mysql:dbname=cae_daw;host=localhost';
-$admin = 'root';
-$clau = 'WhateverPassword';
-try {
-    $sql = new PDO($dsn, $admin, $clau);
-} catch (PDOException $e) {
-    die('Ha fallat la connexió: ' . $e->getMessage());
-}
+$sql = iniciaSQL();
 
 
 
@@ -36,7 +30,7 @@ if($r=="setup")
 }
 else if($r == "setupForm")
 {
-    //ctrlSetupForm($_POST, $sessio); // EN CONSTRUCCIO
+    ctrlSetupForm($_POST, $sessio); // EN CONSTRUCCIO
 }
 else if($r=="portada")
 {
@@ -48,6 +42,9 @@ else if($r == "loginForm")
 }
 else if($r == "login"){
     ctrlLogin($_GET, $sessio); // FUNCIONA
+}
+else if($r == "logout"){
+    ctrlLogout($sessio); // EN CONSTRUCCIO
 }
 else {
     header("Location:index.php?r=login");

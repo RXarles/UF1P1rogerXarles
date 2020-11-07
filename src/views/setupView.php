@@ -16,6 +16,9 @@
     <div class="form-group">
       <div>Benvingut <strong><?=$usuari?></strong></div>
     </div>
+    <form action="index.php?r=logout" method="post">
+      <button type="submit" class="btn btn-dark">Logout</button>
+    </form>
   </div>
 
   <form action="index.php?r=setupForm" enctype="multipart/form-data" method="post">
@@ -54,7 +57,7 @@
             <?php } ?>
         
           <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+  </form>
 
     <!-- Optional JavaScript -->
 
