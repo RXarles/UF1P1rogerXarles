@@ -147,3 +147,15 @@ function validateString($str)
 {
     return trim(filter_var($str, FILTER_SANITIZE_STRING));
 }
+
+function isAdmin($user)
+{
+    if($user == 'admin')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

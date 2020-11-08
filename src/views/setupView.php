@@ -25,6 +25,20 @@
 
         <div class="form">
           <div class="form-group">
+            <label for="selectUser">Quin usuari vols modificar</label>
+            <select name="userSelection" class="form-control" id="selectUser">
+              <option>-</option>
+                <?php
+                foreach ($usuarisPerConfigurar as $codi => $link) {
+                    ?>
+              <option value="<?=$link["nom"];?>"><?=$link["nom"];?></option>
+                <?php }?>
+            </select>
+          </div>
+        </div>
+
+        <div class="form">
+          <div class="form-group">
             <label for="selectLink">Quin fons de pantalla vols</label>
             <select name="linkSelection" class="form-control" id="selectLink">
               <option>-</option>

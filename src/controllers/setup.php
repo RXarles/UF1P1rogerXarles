@@ -7,19 +7,19 @@ function ctrlSetup($sessio,$usuaris)
 
     if($sessio->get("logged")==true)
     {
-        $images = $imatges;
-
         $usuari = $sessio->get("usuari");
 
-        $userSQL = $usuaris->consult($usuari);
-
-        if($userSQL['codi'] == 1)
+        if(isAdmin($usuari))
         {
-            header("Location: index.php?r=portada");
+            $images = $imatges;
+
+            $usuarisPerConfigurar = $usuaris->list();
+
+            include "../src/views/setupView.php";
         }
         else
         {
-            include "../src/views/setupView.php";
+            header("Location: index.php?r=portada");
         }
     }
     else

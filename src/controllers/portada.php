@@ -30,17 +30,20 @@ function ctrlPortada($sessio,$enllacos,$usuaris)
 
     $displaySettings = false;
 
-    if($userSQL['codi'] != 1)
+
+    if(isAdmin($userSQL['nom']))
     {
         $displaySettings = true;
+    }
 
-        
+    if($userSQL["codi"]!=1)
+    {
         $enllacosAditionals = $enllacos->consultFromUser($userSQL['codi']);
-
+        
         foreach($enllacosAditionals as $e)
         {
             array_push($linkEnllacos,["link"=>$e["link"],"titol"=>$e["titol"]]); 
-        }    
+        }  
     }
 
     $calendari = creaCalendari(date('n'), date('Y'), array(12));

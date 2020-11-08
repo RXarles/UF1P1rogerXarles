@@ -13,7 +13,7 @@ function ctrlSetupForm($post, $sessio,$enllacos,$usuaris)
     $enllacAux = $_POST["enllac"];
     $afegir = $_POST["afegir"];
 
-    $usuari = $sessio->get("usuari");
+    $usuari = $_POST["userSelection"];
 
     $userSQL = $usuaris->consult($usuari);
 
