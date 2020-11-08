@@ -49,13 +49,21 @@ class Usuaris
         $result = $query->execute([":name" => $name]);
     }
 
+
+    public function updateBackgroundImage($name,$image)
+    {
+        $query = $this->sql->prepare('update usuari set fonsindex=:image where nom=:name;');
+        $result = $query->execute([":name" => $name,":image" => $image]);
+    }
+
+
     public function consult($name)
     {
         $query = 'select codi,nom,contrasenya,fonsindex from usuari where nom="'.$name.'";';
 
         foreach($this->sql->query($query) as $user)
         {
-            return [$user["codi"],$user["nom"],$user["contrasenya"],$user["fonsindex"]];
+            return ["codi"=>$user["codi"], "nom"=> $user["nom"], "contrasenya"=> $user["contrasenya"], "fonsindex"=>$user["fonsindex"]];
         }
     }
 

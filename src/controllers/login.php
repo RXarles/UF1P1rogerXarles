@@ -12,8 +12,6 @@ function ctrlLogin($get,$sessio)
 
     $error = $sessio->get("error");
 
-
-
     if (!isset($error)) {
         $error = "";
     }
@@ -25,8 +23,8 @@ function ctrlLogin($get,$sessio)
     if (!isset($usuari)) {
         $usuari = "";
     }
+
     $usuari = $sessio->get("usuari");
 
     include "../src/views/loginView.php";
-
 }

@@ -13,7 +13,7 @@
 
     
   </head>
-  <body style ="background-size: cover; background-image: url(<?=$link?>)">
+  <body style ="background-size: cover; background-image: url(<?=$linkImatge?>)">
 
     
     
@@ -24,6 +24,12 @@
       <form action="index.php?r=logout" method="post">
         <button type="submit" class="btn btn-dark">Logout</button>
       </form>
+
+      <?php if($displaySettings){ ?>
+      <form action="index.php?r=setup" method="post">
+        <input type="image" id="imageButton" src="./imatges/settings-icon.png" />
+      </form>
+      <?php }?>
     </div>
     
     <h1 class="text-center" >Com a casa enlloc!</h1>
@@ -33,8 +39,8 @@
             <div class="col-8">
                 <div class="container">
                     <div class="row row-cols-3">
-                      <?php for ($i = 0; $i < sizeof($enllacos); $i++) { ?>
-                            <div class="col"><a href= <?=$enllacos[$i]["link"]?>><div class="m-3 p-2 bg-dark text-white"><?=$enllacos[$i]["titol"]?> </div></a></div>
+                      <?php for ($i = 0; $i < sizeof($linkEnllacos); $i++) { ?>
+                            <div class="col"><a href= <?=$linkEnllacos[$i]["link"]?>><div class="m-3 p-2 bg-dark text-white"><?=$linkEnllacos[$i]["titol"]?> </div></a></div>
                         <?php } ?>
                     </div>
                 </div>

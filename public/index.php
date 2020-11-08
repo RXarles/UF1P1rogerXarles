@@ -19,7 +19,6 @@ $sql = iniciaSQL();
 
 
 
-$imatges = new Daw\Imatges();
 $sessio = new Daw\Sessio();
 
 
@@ -30,32 +29,33 @@ $enllacos = new Daw\Enllacos();
 $enllacos->initialize($sql);
 
 
-$enllacos->deleteTable();
 
-
-if($r=="setup")
-{
-    ctrlSetup($sessio); 
+if($r == "login") // FUNCIONA
+{ 
+    ctrlLogin($_GET, $sessio); 
 }
-else if($r == "setupForm")
-{
-    ctrlSetupForm($_POST, $sessio); 
-}
-else if($r=="portada")
-{
-    ctrlPortada($sessio); 
-}
-else if($r == "loginForm")
+else if($r == "loginForm") // FUNCIONA
 {
     ctrlLoginForm($_POST, $sessio,$sql); 
 }
-else if($r == "login"){
-    ctrlLogin($_GET, $sessio); 
+else if($r=="portada") // FUNCIONA
+{
+    ctrlPortada($sessio,$enllacos,$usuaris); 
 }
-else if($r == "logout"){
+else if($r=="setup")// EN CONSTRUCCIO
+{
+    ctrlSetup($sessio,$usuaris); 
+}
+else if($r == "setupForm")// EN CONSTRUCCIO
+{
+    ctrlSetupForm($_POST, $sessio,$enllacos,$usuaris); 
+}
+else if($r == "logout") // EN CONSTRUCCIO
+{
     ctrlLogout($sessio); 
 }
-else {
+else 
+{
     header("Location:index.php?r=login");
 }
 

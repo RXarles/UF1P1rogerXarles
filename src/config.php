@@ -1,6 +1,5 @@
 <?php
 require_once "../src/models/sessio.php";
-require_once "../src/models/imatges.php";
 require_once "../src/models/usuaris.php";
 require_once "../src/models/enllacos.php";
 
