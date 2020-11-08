@@ -7,6 +7,12 @@ function ctrlSetup($sessio,$usuaris)
 
     if($sessio->get("logged")==true)
     {
+
+        $error = $sessio->get("error");
+
+        $sessio->set("error",""); // Perque nomes faci un cop l'error
+
+        
         $usuari = $sessio->get("usuari");
 
         if(isAdmin($usuari))

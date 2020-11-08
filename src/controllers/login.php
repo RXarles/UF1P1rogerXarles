@@ -12,13 +12,7 @@ function ctrlLogin($get,$sessio)
 
     $error = $sessio->get("error");
 
-    if (!isset($error)) {
-        $error = "";
-    }
-    else{
-        $sessio->set("error",""); // Perque nomes faci un cop l'error
-    }
-
+    $sessio->set("error",""); // Perque nomes faci un cop l'error
     
     if (!isset($usuari)) {
         $usuari = "";

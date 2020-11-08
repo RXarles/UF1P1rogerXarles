@@ -15,27 +15,34 @@ function ctrlSetupForm($post, $sessio,$enllacos,$usuaris)
 
     $usuari = $_POST["userSelection"];
 
-    $userSQL = $usuaris->consult($usuari);
+    $sessio->set("error","");
 
-    $enllac = array();
+    if($usuari != "-")
+    {
+        $userSQL = $usuaris->consult($usuari);
 
-    if (is_array($enllacAux) && is_array($afegir)) {
-        for ($i = 0; $i < sizeOf($enllacAux); $i++) {
-            if (!empty($titolAux[$i]) && validateURL($enllacAux[$i]) && in_array('afegir' . ($i + 1), $afegir)) {
-                
-                $titol = validateString($titolAux[$i]);
-
-                array_push($enllac, array("titol" => $titol, "link"=> $enllacAux[$i], "codiUsuari"=>$userSQL['codi']));
-
+        $enllac = array();
+    
+        if (is_array($enllacAux) && is_array($afegir)) {
+            for ($i = 0; $i < sizeOf($enllacAux); $i++) {
+                if (!empty($titolAux[$i]) && validateURL($enllacAux[$i]) && in_array('afegir' . ($i + 1), $afegir)) {
+                    
+                    $titol = validateString($titolAux[$i]);
+    
+                    array_push($enllac, array("titol" => $titol, "link"=> $enllacAux[$i], "codiUsuari"=>$userSQL['codi']));
+                }
             }
-        }
-
-        $enllacos->deleteFromUser($userSQL['codi']);
-
-        $enllacos->insertMultiple($enllac);
-    } 
-
-    header("Location: index.php?r=portada");
-
-
+    
+            $enllacos->deleteFromUser($userSQL['codi']);
+    
+            $enllacos->insertMultiple($enllac);
+        } 
+    
+        header("Location: index.php?r=portada");
+    }
+    else
+    {
+        $sessio->set("error","Introdueix un usuari!!!");
+        header("Location: index.php?r=setup");
+    }
 }

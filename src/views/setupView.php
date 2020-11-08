@@ -21,8 +21,8 @@
     </form>
   </div>
 
-  <form action="index.php?r=setupForm" enctype="multipart/form-data" method="post">
 
+  <form action="index.php?r=setupForm" enctype="multipart/form-data" method="post">
         <div class="form">
           <div class="form-group">
             <label for="selectUser">Quin usuari vols modificar</label>
@@ -35,6 +35,10 @@
                 <?php }?>
             </select>
           </div>
+          <?php if ($error != "") {
+                ?>
+                <div class="alert alert-danger" role="alert"><?=$error;?></div>
+        <?php }?>
         </div>
 
         <div class="form">
