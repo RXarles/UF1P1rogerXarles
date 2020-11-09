@@ -148,6 +148,18 @@ function validateString($str)
     return trim(filter_var($str, FILTER_SANITIZE_STRING));
 }
 
+function isDefault($user)
+{
+    if($user == 'generic')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 function isAdmin($user)
 {
     if($user == 'admin')

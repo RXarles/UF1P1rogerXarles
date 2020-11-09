@@ -31,13 +31,10 @@ function ctrlPortada($sessio,$enllacos,$usuaris)
     $displaySettings = false;
 
 
-    if(isAdmin($userSQL['nom']))
+    if(!isDefault($userSQL['nom']))
     {
         $displaySettings = true;
-    }
-
-    if($userSQL["codi"]!=1)
-    {
+        
         $enllacosAditionals = $enllacos->consultFromUser($userSQL['codi']);
         
         foreach($enllacosAditionals as $e)

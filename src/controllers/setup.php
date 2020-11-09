@@ -8,14 +8,17 @@ function ctrlSetup($sessio,$usuaris)
     if($sessio->get("logged")==true)
     {
 
+        $numEnllacos = 4;
+
         $error = $sessio->get("error");
 
         $sessio->set("error",""); // Perque nomes faci un cop l'error
 
-        
         $usuari = $sessio->get("usuari");
 
-        if(isAdmin($usuari))
+        $admin = isAdmin($usuari);
+
+        if(!isDefault($usuari))
         {
             $images = $imatges;
 

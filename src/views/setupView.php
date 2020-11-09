@@ -19,27 +19,33 @@
     <form action="index.php?r=logout" method="post">
       <button type="submit" class="btn btn-dark">Logout</button>
     </form>
+    <form action="index.php?r=portada" method="post">
+        <input type="image" id="imageButton" src="./imatges/home-icon.png" />
+      </form>
   </div>
 
 
   <form action="index.php?r=setupForm" enctype="multipart/form-data" method="post">
-        <div class="form">
-          <div class="form-group">
-            <label for="selectUser">Quin usuari vols modificar</label>
-            <select name="userSelection" class="form-control" id="selectUser">
-              <option>-</option>
-                <?php
-                foreach ($usuarisPerConfigurar as $codi => $link) {
-                    ?>
-              <option value="<?=$link["nom"];?>"><?=$link["nom"];?></option>
-                <?php }?>
-            </select>
+        
+        <?php if($admin){?>
+          <div class="form">
+            <div class="form-group">
+              <label for="selectUser">Quin usuari vols modificar</label>
+              <select name="userSelection" class="form-control" id="selectUser">
+                <option>-</option>
+                  <?php
+                  foreach ($usuarisPerConfigurar as $codi => $link) {
+                      ?>
+                <option value="<?=$link["nom"];?>"><?=$link["nom"];?></option>
+                  <?php }?>
+              </select>
+            </div>
+            <?php if ($error != "") {
+                  ?>
+                  <div class="alert alert-danger" role="alert"><?=$error;?></div>
+          <?php }?>
           </div>
-          <?php if ($error != "") {
-                ?>
-                <div class="alert alert-danger" role="alert"><?=$error;?></div>
         <?php }?>
-        </div>
 
         <div class="form">
           <div class="form-group">
@@ -55,9 +61,6 @@
           </div>
         </div>
           <?php
-
-            $numEnllacos = 2;
-
             for ($i = 1; $i <= $numEnllacos; $i++) {?>
             <div class="form">
               <div class="form-group">

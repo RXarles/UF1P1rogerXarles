@@ -4,7 +4,15 @@ function ctrlLoginForm($post, $sessio,$sql)
 {
     if($post["usuari"] == "" || $post["contrasenya"] == "")
     {
-        $usuari = $sessio->set("usuari","");
+        if($post["usuari"] == "")
+        {
+            $usuari = $sessio->set("usuari","");
+        }
+        else
+        {
+            $sessio->set("usuari",validateString($post["usuari"]));
+        }
+
         $sessio->set("error","Has d'indicar usuari i contrasenya");
         header("Location: index.php?r=login");
         die();
@@ -15,7 +23,7 @@ function ctrlLoginForm($post, $sessio,$sql)
     
     $contrasenya = validateString($post["contrasenya"]);
 
-    if (comprovarUsuariContrasenya($usuari, $contrasenya,$sql)) {
+    if (comprovarUsuariContrasenya($usuari, $contrasenya,$sql) && !isDefault($usuari)) {
         $sessio->set("logged",true);
         header("Location: index.php?r=portada");
     }
