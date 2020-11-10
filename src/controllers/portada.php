@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * ctrlPortada:  Comprova si estas logat i de ser aixi carrega tots els enllaços i el fons de pantalla depenent de l'usuari 
+ *
+ * @param $sessio parametres emmagatzemats a la sessio actual
+ * @param $enllacos model per treballar amb la taula enllac de la base de dades
+ * @param $usuaris model per treballar amb la taula usuari de la base de dades
+**/
 function ctrlPortada($sessio,$enllacos,$usuaris)
 {  
     if($sessio->get("logged")==false)
     {
         $sessio->set("error","Has d'iniciar sessio"); 
         header("Location: index.php?r=login");
+        die();
     }
 
     include "../src/config.php";

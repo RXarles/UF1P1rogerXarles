@@ -33,7 +33,7 @@ class Sessio
     /**
       * get:  obté un valor de la sessió
       *
-      * @param $tasca string amb la tasca.
+      * @param $id string amb la tasca.
       *
     **/
     public function get($id)
@@ -47,6 +47,7 @@ class Sessio
       * guarda el valor a la sessió
       *
       * @param $id integer identificador de la tasca que volem esborrar.
+      * @param $value valor que volem guardar.
       *
     **/
     public function set($id, $value)

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * ctrlLogout:  "Esborra" les dades de la sessio actual
+ *
+ * @param $sessio parametres emmagatzemats a la sessio actual
+**/
 function ctrlLogout($sessio)
 {
     $sessio->set("logged",false);

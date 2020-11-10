@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * ctrlLogin:  Fa les comprovacions necessaries per saber si has introduit correctament usuari i contrasenya per saber si et pots loguejar o no
+ *
+ * @param $post parametres passats per $_POST a index.php
+ * @param $sessio parametres emmagatzemats a la sessio actual
+ * @param $sql PDO on es troba la base de dades amb la que comprovar
+**/
 function ctrlLoginForm($post, $sessio,$sql)
 {
     if($post["usuari"] == "" || $post["contrasenya"] == "")

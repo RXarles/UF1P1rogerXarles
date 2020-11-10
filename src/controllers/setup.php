@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * ctrlPortada:  Comprova si estas logat i de ser aixi et deixa modificar els teus enllaços i fons de pantalla personalitzats
+ *
+ * L'usuari administrador pot gestionar els enllaços i fons de pantalla de tots
+ * 
+ * 
+ * @param $sessio parametres emmagatzemats a la sessio actual
+ * @param $usuaris model per treballar amb la taula usuari de la base de dades
+**/
 function ctrlSetup($sessio,$usuaris)
 {
     include "../src/config.php";

@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * ctrlPortada:  Actualitza les dades de la base dades depenent del que s'hagi introduit al formulari del setup
+ *
+ * @param $post parametres passats per $_POST a index.php
+ * @param $sessio parametres emmagatzemats a la sessio actual
+ * @param $enllacos model per treballar amb la taula enllac de la base de dades
+ * @param $usuaris model per treballar amb la taula usuari de la base de dades
+**/
 function ctrlSetupForm($post, $sessio,$enllacos,$usuaris)
 {
     //ENLLAÇOS
